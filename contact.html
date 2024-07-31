@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISBURMA</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="icon" href="img/sis_burma_logo.png">
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* nav  */
+        .navbar{
+            width: 100%;
+            height: 100px;
+            background-color: #f8f8f8;
+        }
+        .navbar img{
+            width: 90px;
+            margin-left: 200px;
+        }
+        .navbar .navbar_menu {
+            margin-left: 400px;
+            margin-top: -60px;
+            position: absolute;
+        }
+        .navbar .navA{
+            text-decoration: none;
+        }
+        .navbar .dropmenu{
+            margin-left: 105px;
+            margin-top: -26px;
+        }
+        .navbar .dropmenu_2{
+            margin-left: 270px;
+            margin-top: -40px;
+        }
+        .navbar .contact{
+            margin-left: 470px;
+            margin-top: -28px;
+        }
+        .navbar .label{
+            margin-left: 550px;
+            
+        }
+        /* nav hover */
+        .navA {
+            text-decoration: none;
+            color: black;
+            position: relative;
+        }
+        .navA::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black;
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        .navA:hover::after {
+            width: 100%;
+            left: 0;
+            background: black;
+        }
+        .current-page::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black; 
+        }
+        /* dropmenu */
+        .dropmenu{
+            width: 120px;
+            height: 40px;
+        }
+        .dropmenu a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu > div:nth-child(2){top: -38px;}
+        .dropmenu > div:nth-child(3){top: -76px;}
+        .dropmenu > div:nth-child(4) {top: -114px;}
+        .dropmenu:hover > div {top: 0px;}
+
+        .dropmenu_2{
+            width: 120px; 
+            height: 38px;
+        }
+        .dropmenu_2 a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu_2 > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu_2 > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu_2 > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu_2 > div:nth-child(2){top: -38px;}
+        .dropmenu_2 > div:nth-child(3){top: -76px;}
+        .dropmenu_2:hover > div {top: 0px;}
+
+        /* search bar */
+        .label{
+            margin-top: -30px;
+        }
+        label {
+            position: relative;
+            margin-left: 100px;
+        }
+        input {
+            background-color: #f8f8f8;
+            width: 0;
+            transition: width 1s, border-radius 1s, border 0.5s;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+            left: 0;
+            font-size: 15px;
+        }
+        input:hover, input:focus {
+            border-radius: 50px;
+            width: 250px;
+            color: black;
+            cursor: text;
+            border: 1px solid black;
+            left: -20px;
+        }
+        input::placeholder {
+            color: black;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        input:hover::placeholder, input:focus::placeholder {
+            opacity: 1;
+        }
+        #search {
+            font-size: 20px;
+            height: 30px;
+            display: inline-block;
+            position: absolute;
+            left: 1px;
+            bottom: -10px;
+            transition: 0.4s;
+        }
+        input:focus + #search, input:hover + #search {
+            opacity: 0;
+        }
+
+        /* section */
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .header h2 {
+            font-weight: normal;
+            color: gold;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        section {
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .left-column, .right-column {
+            padding: 0 20px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333333;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }       
+
+        .text {
+            border-left: 3px solid #000000;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .text p {
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1em;
+            color: #333333;
+            margin: 0;
+        }
+        .contact-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: flex;
+        }
+        .contact-info {
+            margin: 50px 20px 15px 15px;
+            line-height: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-item .icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .contact-inputs{
+            width: 80%;
+        }
+        .contact-inputs .input-item {
+            margin-bottom: 10px;
+        }
+
+        .contact-inputs .inp {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 30px;
+            outline: none;
+            width: 100%;
+        }
+
+        .contact-inputs .inp:empty:before {
+            content: attr(data-placeholder);
+            color: #aaa;
+        }
+
+        .contact-inputs .inp.message {
+            min-height: 100px;
+        }
+
+        .send-button {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .send-button button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .send-button button:hover {
+            background-color: #0056b3;
+        }
+        /* footer */
+        /* footer{
+            margin-top: 900px;
+            width: 100%;
+            height: 400px;
+            background-color: lightgray;
+        } */
+        .footer {
+            background-color: #f8f8f8;
+            padding: 30px 100px 5px 100px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+        .footer div h2 {
+            margin-bottom: 15px;
+        }
+        .footer a {
+            display: inline-block; 
+            color: #000;
+            text-decoration: none;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .footer a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: black;
+            transition: width 0.3s ease;
+        }
+        .footer a:hover::after {
+            width: 100%;
+        }       
+        .follow {
+            margin-top: 10px; 
+            margin-bottom: 30px; 
+            line-height: 25px;
+        }
+        #fb,#ig{
+            font-size: 20px;
+        }
+        #fb,#ig,#email{
+            margin-right: 20px;
+            font-size: 25px;
+        }
+        .dk {
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            color: #666; 
+            margin-top: 20px; 
+            padding-top: 10px; 
+        }
+        .dk a {
+            color: black;
+            text-decoration: none;
+            position: relative;
+        }       
+        .dk a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: #666; 
+            transition: width 0.3s ease;
+        }
+        .dk a:hover::after {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Nav Bar -->
+    <header>
+        <div class="navbar">
+            <img src="img/sis_burma_logo.png" alt="SISBURMA Logo">
+            <div class="navbar_menu">
+                <div class="home">
+                    <a href="index.html" class="navA">Home</a> 
+                </div>
+                <div class="dropmenu">
+                    <div><a href="#" class="navA">Shop</a></div>
+                    <div><a href="shop.html" class="navA">Shop Category</a></div>
+                    <div><a href="product.html" class="navA">Product Details</a></div>
+                    <div><a href="checkout.html" class="navA">Checkout</a></div>
+                </div>
+                <div class="dropmenu_2">
+                    <div><a href="#" class="navA">Account</a></div>
+                    <div><a href="login.html" class="navA">Login</a></div>
+                    <div><a href="reg.html" class="navA">Register</a></div>
+                </div>
+                <div class="contact">
+                    <a href="contact.html" class="navA current-page">About Us</a>
+                </div>
+                <div class="label">
+                    <label for="text">
+                        <input type="search" id="text" placeholder="Search the item you want">
+                        <i id="search" class="fa fa-search" aria-hidden="true"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Section  -->
+        <header class="header">
+            <h2>EST. 2016</h2>
+            <h1>Our Story</h1>
+        </header>
+        <main>
+            <section class="left-column">
+                <p>Sisburma is a men’s fashion brand founded in 2016 with a vision to create a leading brand originally born in Burma and to offer young people a better lifestyle. We believe that fashion is more than just clothing — it’s a way of expressing oneself and making a statement. That’s why we create unique, classic, and smart pieces that combine style, comfort, and functionality.</p><br>
+                <p>Today, Sisburma is proud to offer a range of men’s clothing and accessories that embody our brand values of uniqueness, classicism, and smartness. Our designs are inspired by the international trending patterns and fabrics that have been passed down through generations, but with a contemporary twist that makes them fresh and modern.</p>
+            </section>
+            <section class="right-column">
+                <p>We are committed to using high-quality materials and ethical manufacturing practices to create products that are not only stylish but also durable and sustainable. We believe in offering our customers value for money, which is why we keep our prices affordable without compromising on quality.</p><br><br>
+                <p>At Sisburma, we’re not just a fashion brand — we’re a community of like-minded individuals who share a passion for style, creativity, and culture. We invite you to join us on our journey and experience the beauty and uniqueness of Sisburma.</p>
+            </section>
+        </main>
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="content">
+                <div class="text"></div>
+                <p>“Sisburma is a men’s clothing brand based in Burma, with stores located in modern trade shopping centers across the country, including City Mall, Junction City, Capital Mall Yangon, and Capital Mall Mandalay. Our vision is to create a leading lifestyle brand offering sustainable, socially responsible practices and adapting to customers’ needs. We value excellence and are committed to being an effective, zero-tolerance workplace.”</p>
+            </div>
+        </div>
+        <div class="contact-form">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                    <16>73, Kone Baung 1st Street, <br>16 A Ward, 11421</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <span>09883565394<br>Mon to Fri 9am to 6pm</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <span>info@sisburma.com <br>Send us your query anytime!</span>
+                </div>
+            </div>
+            <div class="contact-inputs">
+                <div class="input-item">
+                    <div contenteditable="true" class="inp" data-placeholder="Enter your name"></div>
+                </div>
+                <div class="input-item">
+                    <div contenteditable="true" class="inp" data-placeholder="Enter email address"></div>
+                </div>
+                <div class="input-item">
+                    <div contenteditable="true" class="inp" data-placeholder="Enter Subject"></div>
+                </div>
+                <div class="input-item">
+                    <div contenteditable="true" class="inp message" data-placeholder="Enter Message"></div>
+                </div>
+                <div class="send-button">
+                    <button>Send Message</button>
+                </div>
+            </div>
+        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="one">
+                <h2>COMPANY</h2>
+                <a href="#" class="company" >About Us</a><br>
+                <a href="#" class="company" >Contact</a><br>
+                <a href="#" class="company" >Store Location</a><br>
+                <a href="#" class="company" >Careers</a><br>
+            </div>
+            <div class="two">
+                <h2>HELP</h2>
+                <a href="#" class="help">Order Tracking</a><br>
+                <a href="#" class="help">FAQ's</a><br>
+                <a href="#" class="help">Delivery Policy</a><br>
+                <a href="#" class="help">Privacy Policy</a><br>
+                <a href="#" class="help">Return & Exchange Policy</a><br>
+            </div>
+            <div class="three">
+                <h2>STORE</h2>
+                <a href="#" class="store">Topwear</a><br>
+                <a href="#" class="store">Outerwear</a><br>
+                <a href="#" class="store">Pants</a><br>
+                <a href="#" class="store">Shoes</a><br>
+                <a href="#" class="store">Accessories</a><br>
+            </div>
+            <div class="four">
+                <h2>FOLLOW US</h2>
+                <p class="follow">Keep up-to-date with our latest things by following us on our social media channels.</p>
+                <a href="#"><i id="fb" class="fa-brands fa-facebook"></i></i></a>
+                <a href="#"><i id="ig" class="fa-brands fa-instagram"></i></i></a>
+                <a href="#"><i id="email" class="fa-regular fa-envelope"></i></i></a>
+            </div>
+        </div>
+        <div class="dk">
+            Copyright &copy; All rights reserved | This webiste is made by <a href="#">Derek Valeska</a>
+        </div>
+    </footer>
+</body>
+</html>

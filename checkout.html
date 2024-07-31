@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISBURMA</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="icon" href="img/sis_burma_logo.png">
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* nav  */
+        .navbar{
+            width: 100%;
+            height: 100px;
+            background-color: #f8f8f8;
+        }
+        .navbar img{
+            width: 90px;
+            margin-left: 200px;
+        }
+        .navbar .navbar_menu {
+            margin-left: 400px;
+            margin-top: -60px;
+            position: absolute;
+        }
+        .navbar .navA{
+            text-decoration: none;
+        }
+        .navbar .dropmenu{
+            margin-left: 105px;
+            margin-top: -26px;
+        }
+        .navbar .dropmenu_2{
+            margin-left: 270px;
+            margin-top: -40px;
+        }
+        .navbar .contact{
+            margin-left: 470px;
+            margin-top: -28px;
+        }
+        .navbar .label{
+            margin-left: 550px;
+            
+        }
+        /* nav hover */
+        .navA {
+            text-decoration: none;
+            color: black;
+            position: relative;
+        }
+        .navA::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black;
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        .navA:hover::after {
+            width: 100%;
+            left: 0;
+            background: black;
+        }
+        .current-page::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black; 
+        }
+        /* dropmenu */
+        .dropmenu{
+            width: 120px;
+            height: 40px;
+        }
+        .dropmenu a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu > div:nth-child(2){top: -38px;}
+        .dropmenu > div:nth-child(3){top: -76px;}
+        .dropmenu > div:nth-child(4) {top: -114px;}
+        .dropmenu:hover > div {top: 0px;}
+
+        .dropmenu_2{
+            width: 120px; 
+            height: 38px;
+        }
+        .dropmenu_2 a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu_2 > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu_2 > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu_2 > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu_2 > div:nth-child(2){top: -38px;}
+        .dropmenu_2 > div:nth-child(3){top: -76px;}
+        .dropmenu_2:hover > div {top: 0px;}
+
+        /* search bar */
+        .label{
+            margin-top: -30px;
+        }
+        label {
+            position: relative;
+            margin-left: 100px;
+        }
+        input {
+            background-color: #f8f8f8;
+            width: 0;
+            transition: width 1s, border-radius 1s, border 0.5s;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+            left: 0;
+            font-size: 15px;
+        }
+        input:hover, input:focus {
+            border-radius: 50px;
+            width: 250px;
+            color: black;
+            cursor: text;
+            border: 1px solid black;
+            left: -20px;
+        }
+        input::placeholder {
+            color: black;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        input:hover::placeholder, input:focus::placeholder {
+            opacity: 1;
+        }
+        #search {
+            font-size: 20px;
+            height: 30px;
+            display: inline-block;
+            position: absolute;
+            left: 1px;
+            bottom: -10px;
+            transition: 0.4s;
+        }
+        input:focus + #search, input:hover + #search {
+            opacity: 0;
+        }
+
+        /* section */
+        section{
+            background-color: #fff;
+        }
+        .container {
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cart {
+            flex: 2;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+
+        .cart h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .cart p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .item-details {
+            flex: 2;
+        }
+
+        .item-details p {
+            margin: 0;
+        }
+
+        .item-details strong {
+            display: block;
+            margin-top: 5px;
+        }
+
+            .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+            }
+
+        .quantity .quantity-value {
+            width: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            padding: 5px;
+            margin-top: -20px;
+        }
+        .quantity button{
+            margin-top: -20px;
+        }
+        .cart-item p {
+            margin-left: 15px;
+            flex: 1;
+        }
+        .cart-item .ks{
+            margin-left: 50px;
+        }
+        .remove {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: -25px;
+        }
+
+        .back-to-shop {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #888;
+        }       
+
+        .summary {
+            flex: 1;
+            padding: 20px;
+            background-color: #eee;
+        }       
+
+       .summary h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }   
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .summary-item p {
+            margin: 0;
+            color: #555;
+            }
+
+        .summary-item select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            width: 130px;
+        }
+
+        .summary-item .code-input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            width: 130px;
+            height: 30px;
+        }
+
+        .checkout {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+            }
+
+        .checkout:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .billing-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            height: 500px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .billing-details-left,
+        .billing-details-right {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .form-control:empty::before {
+            content: attr(data-placeholder);
+            color: #aaa;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .form-control:focus::before {
+            content: "";
+        }               
+
+        .checkout-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: -40px;
+        }       
+        /* footer */
+        /* footer{
+            margin-top: 900px;
+            width: 100%;
+            height: 400px;
+            background-color: lightgray;
+        } */
+        .footer {
+            background-color: #f8f8f8;
+            padding: 30px 100px 5px 100px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer div {
+            flex: 1;
+            min-width: 200px;   
+            margin: 10px;
+        }
+        h3 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            display: inline-block; 
+            color: #000;
+            text-decoration: none;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .footer a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: black;
+            transition: width 0.3s ease;
+        }
+        .footer a:hover::after {
+            width: 100%;
+        }       
+        .follow {
+            margin-top: 10px; 
+            margin-bottom: 30px; 
+            line-height: 25px;
+        }
+        #fb,#ig{
+            font-size: 20px;
+        }
+        #fb,#ig,#email{
+            margin-right: 20px;
+            font-size: 25px;
+        }
+        .dk {
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            color: #666; 
+            margin-top: 20px; 
+            padding-top: 10px; 
+        }
+        .dk a {
+            color: black;
+            text-decoration: none;
+            position: relative;
+        }       
+        .dk a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: #666; 
+            transition: width 0.3s ease;
+        }
+        .dk a:hover::after {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Nav Bar -->
+    <header>
+        <div class="navbar">
+            <img src="img/sis_burma_logo.png" alt="SISBURMA Logo">
+            <div class="navbar_menu">
+                <div class="home">
+                    <a href="index.html" class="navA">Home</a> 
+                </div>
+                <div class="dropmenu">
+                    <div><a href="#" class="navA current-page">Shop</a></div>
+                    <div><a href="shop.html" class="navA">Shop Category</a></div>
+                    <div><a href="product.html" class="navA">Product Details</a></div>
+                    <div><a href="checkout.html" class="navA">Checkout</a></div>
+                </div>
+                <div class="dropmenu_2">
+                    <div><a href="#" class="navA">Account</a></div>
+                    <div><a href="login.html" class="navA">Login</a></div>
+                    <div><a href="reg.html" class="navA">Register</a></div>
+                </div>
+                <div class="contact">
+                    <a href="contact.html" class="navA">About Us</a>
+                </div>
+                <div class="label">
+                    <label for="text">
+                        <input type="search" id="text" placeholder="Search the item you want">
+                        <i id="search" class="fa fa-search" aria-hidden="true"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Section  -->
+    <section>
+        <div class="container">
+            <div class="cart">
+                <h2>Shopping Cart</h2>
+                <p>3 items</p>
+                <div class="cart-item">
+                    <img src="img/sis_bag.jpeg" alt="Bag">
+                    <div class="item-details">
+                        <p>Bag</p>
+                        <p><strong>The Sisburma Styling Bag</strong></p>
+                    </div>
+                    <div class="quantity">
+                        <button>-</button>
+                        <div class="quantity-value">1</div>
+                        <button>+</button>
+                    </div>
+                    <p class="ks">Ks 15,000.00</p>
+                    <button class="remove">×</button>
+                </div>
+                <div class="cart-item">
+                    <img src="img/sis_cargo.jpeg" alt="Cargo Pants">
+                    <div class="item-details">
+                        <p>Pants</p>
+                        <p><strong>Sisburmesehype Cargo Pants</strong></p>
+                    </div>
+                    <div class="quantity">
+                        <button>-</button>
+                        <div class="quantity-value">1</div>
+                        <button>+</button>
+                    </div>
+                    <p class="ks">Ks 45,000.00</p>
+                    <button class="remove">×</button>
+                </div>
+                <div class="cart-item">
+                    <img src="img/sis_tank.jpeg" alt="Tank Top">
+                    <div class="item-details">
+                        <p>Shirt</p>
+                        <p><strong>Sisburma Confidence Booster Tank Top</strong></p>
+                    </div>
+                    <div class="quantity">
+                        <button>-</button>
+                        <div class="quantity-value">2</div>
+                        <button>+</button>
+                    </div>
+                    <p class="ks">Ks 64,000.00</p>
+                    <button class="remove">×</button>
+                </div>
+                <a href="shop.html" class="back-to-shop"><i class="fa-solid fa-arrow-left"></i> Back to shop</a>
+            </div>
+            <div class="summary">
+                <h2>Summary</h2>
+                <div class="summary-item">
+                    <p>TOTAL ITEMS</p>
+                    <p>3</p>
+                </div>
+                <div class="summary-item">
+                    <p>SHIPPING</p>
+                    <select>
+                        <option>Online Payment</option>
+                        <option>Cash on Delivery</option>
+                    </select>
+                </div>
+                <div class="summary-item">
+                    <p>PROMO CODE</p>
+                    <div class="code-input" contenteditable="true" placeholder="Enter your code"></div>
+                </div>
+                <div class="summary-item">
+                    <p>TOTAL PRICE</p>
+                    <p>Ks 124,000.00</p>
+                </div>
+                <button class="checkout">CHECKOUT</button>
+            </div>
+        </div>
+        <div class="billing-container">
+            <h2>Billing Deatils</h2>
+            <div class="billing-details-left">
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="First name *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Company name (optional)"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Street address *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="State *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Postcode / ZIP (optional)"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Email address *"></div>
+                </div>
+            </div>
+            <div class="billing-details-right">
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Last name *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Country / Region *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Apartment, suite, unit, etc."></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Township / City *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Phone *"></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control" contenteditable="true" data-placeholder="Order notes (optional)"></div>
+                </div>
+            </div>
+            <div class="checkout-container">
+                <button class="checkout">CHECKOUT</button>
+            </div>
+        </div>
+        
+        
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="one">
+                <h3>COMPANY</h3>
+                <a href="#" class="company" >About Us</a><br>
+                <a href="#" class="company" >Contact</a><br>
+                <a href="#" class="company" >Store Location</a><br>
+                <a href="#" class="company" >Careers</a><br>
+            </div>
+            <div class="two">
+                <h3>HELP</h3>
+                <a href="#" class="help">Order Tracking</a><br>
+                <a href="#" class="help">FAQ's</a><br>
+                <a href="#" class="help">Delivery Policy</a><br>
+                <a href="#" class="help">Privacy Policy</a><br>
+                <a href="#" class="help">Return & Exchange Policy</a><br>
+            </div>
+            <div class="three">
+                <h3>STORE</h3>
+                <a href="#" class="store">Topwear</a><br>
+                <a href="#" class="store">Outerwear</a><br>
+                <a href="#" class="store">Pants</a><br>
+                <a href="#" class="store">Shoes</a><br>
+                <a href="#" class="store">Accessories</a><br>
+            </div>
+            <div class="four">
+                <h3>FOLLOW US</h3>
+                <p class="follow">Keep up-to-date with our latest things by following us on our social media channels.</p>
+                <a href="#"><i id="fb" class="fa-brands fa-facebook"></i></i></a>
+                <a href="#"><i id="ig" class="fa-brands fa-instagram"></i></i></a>
+                <a href="#"><i id="email" class="fa-regular fa-envelope"></i></i></a>
+            </div>
+        </div>
+        <div class="dk">
+            Copyright &copy; All rights reserved | This webiste is made by <a href="#">Derek Valeska</a>
+        </div>
+    </footer>
+</body>
+</html>

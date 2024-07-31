@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISBURMA</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="icon" href="img/sis_burma_logo.png">
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        /* nav  */
+        .navbar {
+            width: 100%;
+            height: 100px;
+            background-color: #f8f8f8;
+            position: sticky;
+        }
+        .navbar img{
+            width: 90px;
+            margin-left: 200px;
+        }
+        .navbar .navbar_menu {
+            margin-left: 400px;
+            margin-top: -60px;
+            position: absolute;
+        }
+        .navbar .navA{
+            text-decoration: none;
+        }
+        .navbar .dropmenu{
+            margin-left: 105px;
+            margin-top: -26px;
+        }
+        .navbar .dropmenu_2{
+            margin-left: 270px;
+            margin-top: -40px;
+        }
+        
+        .navbar .contact{
+            margin-left: 470px;
+            margin-top: -28px;
+        }
+        .navbar .label{
+            margin-left: 550px;
+            
+        }
+        /* nav hover */
+        .navA {
+            text-decoration: none;
+            color: black;
+            position: relative;
+        }
+        .navA::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black;
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        .navA:hover::after {
+            width: 100%;
+            left: 0;
+            background: black;
+        }
+        .current-page::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: black; 
+        }
+        /* dropmenu */
+        
+        .dropmenu{
+            width: 120px;
+            height: 40px;
+        }
+        .dropmenu a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu > div:nth-child(2){top: -38px;}
+        .dropmenu > div:nth-child(3){top: -76px;}
+        .dropmenu > div:nth-child(4) {top: -114px;}
+        .dropmenu:hover > div {top: 0px;}
+
+        .dropmenu_2{
+            width: 120px; 
+            height: 38px;
+        }
+        .dropmenu_2 a{
+            text-decoration: none;
+            color: black;
+        }
+        .dropmenu_2 > div {
+            display: block;
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            transition: 1s;
+            position: relative;
+            cursor: pointer;
+        }
+        .dropmenu_2 > div:hover {
+            background-color: lightgray;
+        }
+        .dropmenu_2 > div:first-child{
+            z-index: 1;
+            background-color: #f8f8f8;
+        }
+        .dropmenu_2 > div:nth-child(2){top: -38px;}
+        .dropmenu_2 > div:nth-child(3){top: -76px;}
+        .dropmenu_2:hover > div {top: 0px;}
+
+        /* search bar */
+        .label{
+            margin-top: -30px;
+        }
+        label {
+            position: relative;
+            margin-left: 100px;
+        }
+        input {
+            background-color: #f8f8f8;
+            width: 0;
+            transition: width 1s, border-radius 1s, border 0.5s;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+            left: 0;
+            font-size: 15px;
+        }
+        input:hover, input:focus {
+            border-radius: 50px;
+            width: 250px;
+            color: black;
+            cursor: text;
+            border: 1px solid black;
+            left: -20px;
+        }
+        input::placeholder {
+            color: black;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        input:hover::placeholder, input:focus::placeholder {
+            opacity: 1;
+        }
+        #search {
+            font-size: 20px;
+            height: 30px;
+            display: inline-block;
+            position: absolute;
+            left: 1px;
+            bottom: -10px;
+            transition: 0.4s;
+        }
+        input:focus + #search, input:hover + #search {
+            opacity: 0;
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+            color: brown;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        /* section */
+        section {
+            display: flex;
+            flex: 1;
+            background-color: #fff;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f8f8f8;
+            position: sticky;
+            top: 100px; 
+            padding-top: 10px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        .content {
+            width: 80%;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-card img {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+
+        /* footer */
+        .footer {
+            background-color: #f8f8f8;
+            padding: 30px 100px 5px 100px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+        .footer div h2 {
+            margin-bottom: 15px;
+        }
+        .footer a {
+            display: inline-block; 
+            color: #000;
+            text-decoration: none;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .footer a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: black;
+            transition: width 0.3s ease;
+        }
+        .footer a:hover::after {
+            width: 100%;
+        }       
+        .follow {
+            margin-top: 10px; 
+            margin-bottom: 30px; 
+            line-height: 25px;
+        }
+        #fb,#ig{
+            font-size: 20px;
+        }
+        #fb,#ig,#email{
+            margin-right: 20px;
+            font-size: 25px;
+        }
+        .dk {
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            color: #666; 
+            margin-top: 20px; 
+            padding-top: 10px; 
+        }
+        .dk a {
+            color: black;
+            text-decoration: none;
+            position: relative;
+        }       
+        .dk a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; 
+            width: 0;
+            height: 2px; 
+            background: #666; 
+            transition: width 0.3s ease;
+        }
+        .dk a:hover::after {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Nav Bar -->
+    <header>
+        <div class="navbar">
+            <img src="img/sis_burma_logo.png" alt="SISBURMA Logo">
+            <div class="navbar_menu">
+                <div class="home">
+                    <a href="index.html" class="navA">Home</a> 
+                </div>
+                <div class="dropmenu">
+                    <div><a href="#" class="navA current-page">Shop</a></div>
+                    <div><a href="shop.html" class="navA">Shop Category</a></div>
+                    <div><a href="product.html" class="navA">Product Details</a></div>
+                    <div><a href="checkout.html" class="navA">Checkout</a></div>
+                </div>
+                <div class="dropmenu_2">
+                    <div><a href="#" class="navA">Account</a></div>
+                    <div><a href="login.html" class="navA">Login</a></div>
+                    <div><a href="reg.html" class="navA">Register</a></div>
+                </div>
+                <div class="contact">
+                    <a href="contact.html" class="navA">About Us</a>
+                </div>
+                <div class="label">
+                    <label for="text">
+                        <input type="search" id="text" placeholder="Search the item you want">
+                        <i id="search" class="fa fa-search" aria-hidden="true"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Section  -->
+    <section>
+        <div class="sidebar">
+            <h2>TOPWEAR</h2>
+            <ul>
+                <li><a href="shop.html" class="navA current-page">Tee</a></li>
+                <li><a href="egindex.html" class="navA">Polo</a></li>
+                <li><a href="shop.html" class="navA">Shirt</a></li>
+            </ul>
+            <h2>OUTERWEAR</h2>
+            <ul>
+                <li><a href="shop.html" class="navA">Jacket</a></li>
+                <li><a href="shop.html" class="navA">Sweatshirt</a></li>
+                <li><a href="shop.html" class="navA">Hoodie</a></li>
+            </ul>
+            <h2>PANTS</h2>
+            <ul>
+                <li><a href="shop.html" class="navA">Jeans Pants</a></li>
+                <li><a href="shop.html" class="navA">Ankle Pants</a></li>
+                <li><a href="shop.html" class="navA">Short Pants</a></li>
+                <li><a href="shop.html" class="navA">Cargo Pants</a></li>
+                <li><a href="shop.html" class="navA">Loose Fit Pants</a></li>
+            </ul>
+            <h2>SHOES</h2>
+            <ul>
+                <li><a href="shop.html" class="navA">SISBURMA Sneaker</a></li>
+            </ul>
+            <h2>ACCESSORIES</h2>
+            <ul>
+                <li><a href="shop.html" class="navA">Bags</a></li>
+                <li><a href="shop.html" class="navA">Caps</a></li>
+                <li><a href="shop.html" class="navA">Muffler</a></li>
+                <li><a href="shop.html" class="navA">Underwear</a></li>
+            </ul>
+            <h2>SERIES</h2>
+            <ul>
+                <li><a href="shop.html" class="navA">Sisburmesehype</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>S I S B U R M A</h1>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="img/sis_jean.jpeg" alt="sisburma">
+                    <h3>SISBURMA Jean Hoodie</h3>
+                    <p class="price">Ks 32,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_yellowhoodie.jpeg" alt="sisburma">
+                    <h3>SISBURMA Yellow Hoodie</h3>
+                    <p class="price">Ks 37,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_flower.jpeg" alt="sisburma">
+                    <h3>SISBURMA flower Hoodie</h3>
+                    <p class="price">Ks 37,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_yellow.jpeg" alt="Product 4">
+                    <h3>SISBURMA Yellow Tee</h3>
+                    <p class="price">Ks 47,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sisacidwash.jpeg" alt="sisburma">
+                    <h3>SISBURMA Acid Tee</h3>
+                    <p class="price">Ks 32,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_sneaker.jpeg" alt="sisburma">
+                    <h3>Sisburma Sneaker</h3>
+                    <p class="price">Ks 99,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_tank.jpeg" alt="sisburma">
+                    <h3>Sisburma Tank Top</h3>
+                    <p class="price">Ks 34,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_nde.jpeg" alt="sisburma">
+                    <h3>Sisburma Brief</h3>
+                    <p class="price">Ks 29,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_boxe.jpeg" alt="sisburma">
+                    <h3>Sisburma Boxer</h3>
+                    <p class="price">Ks 34,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_bag.jpeg" alt="sisburma">
+                    <h3>Sisburma Bag</h3>
+                    <p class="price">Ks 30,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_tailor.jpeg" alt="sisburma">
+                    <h3>SISBURMA Tailor Bag</h3>
+                    <p class="price">Ks 30,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_jk.jpeg" alt="sisburma">
+                    <h3>SISBURMA Cropped Jacket</h3>
+                    <p class="price">Ks 45,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_jkp.jpeg" alt="sisburma">
+                    <h3>SISBURMA Suit Pants</h3>
+                    <p class="price">Ks 35,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sis_zip.jpeg" alt="sisburma">
+                    <h3>SISBURMA Zipped Hoodie</h3>
+                    <p class="price">Ks 42,000.00</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/sistee.jpeg" alt="sisburma">
+                    <h3>SISBURMA No Room Tee</h3>
+                    <p class="price">Ks 30,000.00</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="one">
+                <h2>COMPANY</h2>
+                <a href="#" class="company" >About Us</a><br>
+                <a href="#" class="company" >Contact</a><br>
+                <a href="#" class="company" >Store Location</a><br>
+                <a href="#" class="company" >Careers</a><br>
+            </div>
+            <div class="two">
+                <h2>HELP</h2>
+                <a href="#" class="help">Order Tracking</a><br>
+                <a href="#" class="help">FAQ's</a><br>
+                <a href="#" class="help">Delivery Policy</a><br>
+                <a href="#" class="help">Privacy Policy</a><br>
+                <a href="#" class="help">Return & Exchange Policy</a><br>
+            </div>
+            <div class="three">
+                <h2>STORE</h2>
+                <a href="#" class="store">Topwear</a><br>
+                <a href="#" class="store">Outerwear</a><br>
+                <a href="#" class="store">Pants</a><br>
+                <a href="#" class="store">Shoes</a><br>
+                <a href="#" class="store">Accessories</a><br>
+            </div>
+            <div class="four">
+                <h2>FOLLOW US</h2>
+                <p class="follow">Keep up-to-date with our latest things by following us on our social media channels.</p>
+                <a href="#"><i id="fb" class="fa-brands fa-facebook"></i></i></a>
+                <a href="#"><i id="ig" class="fa-brands fa-instagram"></i></i></a>
+                <a href="#"><i id="email" class="fa-regular fa-envelope"></i></i></a>
+            </div>
+        </div>
+        <div class="dk">
+            Copyright &copy; All rights reserved | This webiste is made by <a href="#">Derek Valeska</a>
+        </div>
+    </footer>
+</body>
+</html>
